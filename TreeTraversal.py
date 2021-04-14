@@ -5,19 +5,44 @@
 #         self.left = left
 #         self.right = right
 
-   
-def inorder(root, arr):
-  if root:
-    inorder(root.left, arr)
-    arr.append(root.val)
+def postorder(root, arr):
+  if root:  
+    inorder(root.left, arr)     
     inorder(root.right, arr)
-        
+    arr.append(root.val)
+           
 def preorder(root, arr):
   if root:
     arr.append(root.val)
     inorder(root.left, arr)     
     inorder(root.right, arr)
-    
+      
+def inorder(root, arr):
+   if root:
+    inorder(root.left, arr)
+    arr.append(root.val)
+    inorder(root.right, arr)
+      
+ def preorder_stack_approach(self, root: TreeNode) -> List[int]:
+     arr = []
+     #self.traverse(root, arr)
+     #return arr
+
+     stack = []
+     stack.append(root)
+
+     while len(stack) > 0:
+         node = stack.pop()
+         arr.append(node.val)
+
+         if node.left:
+             stack.append(node.left)
+
+         if node.right:
+             stack.append(node.right)
+
+     return arr
+
 import queue
 def levelOrder(root):
     arr = []
